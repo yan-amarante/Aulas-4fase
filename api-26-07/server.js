@@ -3,83 +3,38 @@ const host = "localhost";
 const port = 3000;
 
 const partidas = [
-    { id: 1, partida: "Grêmio X Inter" },
-    { id: 2, partida: "Flamengo X Vasco" },
-    { id: 3, partida: "Inter X Avaí" },
-    { id: 4, partida: "Flamengo X Grêmio" },
-    { id: 5, partida: "Real Madrid X Grêmio" },
-    { id: 6, partida: "Barcelona X Real Madrid" },
+    { id: 1, partida: "gremio X inter" },
+    { id: 2, partida: "flamengo X vasco" },
+    { id: 3, partida: "inter X avai" },
+    { id: 4, partida: "flamengo X gremio" },
+    { id: 5, partida: "realMadrid X gremio" },
+    { id: 6, partida: "barcelona X realMadrid" },
 ];
 
-const requestListenter = function (req, res) {
-    res.setHeader("Conttent-Type", "application/json");
+const requestListenter = function (request, response) {
+    response.setHeader("Content-Type", "application/json");
+    const url = decodeURI(request.url);
 
-    switch (req.url) {
+    switch (request.url) {
 
         case "/partidas":
-            res.writeHead(200);
-            res.end(JSON.stringify(partidas));
+            response.writeHead(200);
+            response.end(JSON.stringify(partidas));
             break;
 
-        case "/gremio":
-            res.writeHead(200);
-            res.end(JSON.stringify(partidas.filter(objeto => {
-                if (objeto.partida.includes("Grêmio")) {
+        case url:
+            const nomeDoTime = url.replace("/", "");
+            const partidaDoTime = partidas.filter(objeto => {
+                if (objeto.partida.includes(nomeDoTime)) {
                     return objeto
                 }
-            })));
-            break;
-        case "/inter":
-            res.writeHead(200);
-            res.end(JSON.stringify(partidas.filter(objeto => {
-                if (objeto.partida.includes("Inter")) {
-                    return objeto
-                }
-            })));
-            break;
-        case "/flamengo":
-            res.writeHead(200);
-            res.end(JSON.stringify(partidas.filter(objeto => {
-                if (objeto.partida.includes("Flamengo")) {
-                    return objeto
-                }
-            })));
-            break;
-        case "/vasco":
-            res.writeHead(200);
-            res.end(JSON.stringify(partidas.filter(objeto => {
-                if (objeto.partida.includes("Vasco")) {
-                    return objeto
-                }
-            })));
-            break;
-        case "/avai":
-            res.writeHead(200);
-            res.end(JSON.stringify(partidas.filter(objeto => {
-                if (objeto.partida.includes("Avaí")) {
-                    return objeto
-                }
-            })));
-            break;
-        case "/realMadrid":
-            res.writeHead(200);
-            res.end(JSON.stringify(partidas.filter(objeto => {
-                if (objeto.partida.includes("Real Madrid")) {
-                    return objeto
-                }
-            })));
-            break;
-        case "/barcelona":
-            res.writeHead(200);
-            res.end(JSON.stringify(partidas.filter(objeto => {
-                if (objeto.partida.includes("Barcelona")) {
-                    return objeto
-                }
-            })));
+            })
+            response.writeHead(200);
+            response.end(JSON.stringify(partidaDoTime));
             break;
         default:
-            res.writeHead(200);
-            res.end("nada encontrado")
+            response.writeHead(200);
+            response.end("nada encontrado")
     }
 };
 
