@@ -16,7 +16,6 @@ const compras = [
         id: 3, descricao: "Coxinha do Araújo", preco: 7.65
     },
 ]
-// /deletar-compra (DELETE)
 app.get("/", (req, res) => {
     res.status(200).send({ message: "Teste" })
 });
@@ -42,7 +41,7 @@ app.post("/cadastrar-compra", (req, res) => {
 
 app.delete("/deletar-compra/:id", (req, res) => {
     const id = req.params.id;
-    const listaFiltrada = compras.filter((item) => {
+    const listaFiltrada = compras.map((item) => {
         let index;
         if(id == item.id){
             index = compras.indexOf(item);
@@ -51,7 +50,19 @@ app.delete("/deletar-compra/:id", (req, res) => {
     }
     );
     res.status(200).send({ message: "Executou um delete" })
-    //deletar-compra/3
+})
+
+app.put("/atualizar-compra/:id", (req, res) => {
+    const id = req.params.id;
+    const { descricao, preco } = req.body;
+    const listaFiltrada = compras.map((item) => {
+        let index;
+        if(id == item.id){
+        index = compras.indexOf(item);
+        compras[index] = {id:item.id,descricao:descricao, preco: preco}
+        }
+    })
+    res.status(200).send({ message: "Executou um put" })
 })
 
 app.listen(port, () => console.log(`servidor rodando na porta:  ${port}`))
