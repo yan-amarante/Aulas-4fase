@@ -42,8 +42,16 @@ app.post("/cadastrar-compra", (req, res) => {
 
 app.delete("/deletar-compra/:id", (req, res) => {
     const id = req.params.id;
-    const filteredPeople = compras.filter((item) => item.id !== idToRemove);
+    const listaFiltrada = compras.filter((item) => {
+        let index;
+        if(id == item.id){
+            index = compras.indexOf(item);
+            compras.splice(index, 1);
+        }
+    }
+    );
     res.status(200).send({ message: "Executou um delete" })
+    //deletar-compra/3
 })
 
 app.listen(port, () => console.log(`servidor rodando na porta:  ${port}`))
