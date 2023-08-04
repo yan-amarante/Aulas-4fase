@@ -1,4 +1,4 @@
-const listaHeroi = require("../database/heroi")
+const listaHeroi = require("../models/heroi")
 let id = 1;
 
 const getHerois = (req, res, next) => {

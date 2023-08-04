@@ -1,5 +1,5 @@
-const listaHeroi = require("../database/heroi");
-const listaVilao = require("../database/vilao");
+const listaHeroi = require("../models/heroi");
+const listaVilao = require("../models/vilao");
 
 const batalhar = (req, res, next) => {
 
@@ -9,13 +9,13 @@ const batalhar = (req, res, next) => {
     const {idHeroi, idVilao} = req.body;
     
     const heroi = listaHeroi.map(objeto => {
-        if(idHeroi == objeto.id){
+        if(idHeroi === objeto.id){
             return objeto
         }
     })
 
     const vilao = listaVilao.map(objeto => {
-        if(idVilao == objeto.id){
+        if(idVilao === objeto.id){
             return objeto
         }
     })

@@ -1,4 +1,4 @@
-const listaVilao = require("../database/vilao")
+const listaVilao = require("../models/vilao")
 let id = 1;
 
 const getViloes = (req, res, next) => {
