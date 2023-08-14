@@ -1,6 +1,7 @@
 const pg = require("pg");
+const URL = require('../dbConfig')
 
-const database = new pg.Client("URL");
+const database = new pg.Client(URL);
 
 database.connect((erro) => {
     if(erro){
