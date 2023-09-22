@@ -1,0 +1,33 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 1rem;
+}
+.foto-pokemon{
+  width: 80%;
+}
+.pokemon-info{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.lista {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.lista-item{
+  width: 100%;
+}
+.link{
+   text-decoration: none;
+   color: black;
+   font-family: 'Press Start 2P', cursive;
+   font-size: 0.8rem;
+}
