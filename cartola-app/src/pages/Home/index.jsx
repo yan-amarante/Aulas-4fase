@@ -36,7 +36,7 @@ function Home() {
     }
 
     return (
-        <main onClick={() => console.log(times)} className="container-home">
+        <main className="container-home">
             <ul>
                 {times.length > 0 ?
                     times.map((time) => {

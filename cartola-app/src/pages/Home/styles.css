@@ -10,7 +10,6 @@ ul{
 }
 
 .lista-times {
-    width: 20%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -20,10 +19,10 @@ ul{
 .times-card-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
-    gap: 1rem;
+    gap: 1.5rem;
 
     .nomes-container {
         display: flex;
@@ -41,7 +40,7 @@ ul{
     }
 
     .logo-time{
-        width: 30%;
+        min-width: 65px;
         height: 30%;
     }
 }

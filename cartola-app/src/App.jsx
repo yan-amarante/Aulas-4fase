@@ -1,5 +1,5 @@
 import './App.css'
-import { Outlet } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 
 function App() {
 
@@ -7,8 +7,10 @@ function App() {
 
   return (
     <section className='container'>
-    <img className='cartola-logo' src={cartolaLogo}/>
-    <Outlet/>
+      <Link to="/">
+        <img className='cartola-logo' src={cartolaLogo} />
+      </Link>
+      <Outlet />
     </section>
   )
 }

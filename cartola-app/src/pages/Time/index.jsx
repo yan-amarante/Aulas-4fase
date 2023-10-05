@@ -23,12 +23,12 @@ function Time() {
         jogadores = jogadores[0]
 
         let fotoTratativa = jogadores.map((jogador) => {
-            if(jogador.foto === null || jogador.foto === ""){
+            if (jogador.foto === null || jogador.foto === "") {
                 jogador.foto = "https://s.sde.globo.com/media/person_role/2022/09/27/photo_220x220_1oFhhWx.png"
             }
-            return {...jogador, foto:jogador.foto.replace("FORMATO", "220x220")}
+            return { ...jogador, foto: jogador.foto.replace("FORMATO", "220x220") }
         })
-         setJogadores(fotoTratativa)
+        setJogadores(fotoTratativa)
     }
 
 
@@ -46,7 +46,9 @@ function Time() {
 
         setNomeTime(data.clubes[id.id].nome)
 
-        jogadoresTratativa(jogadores)
+        if (jogadores.atletas !== null) {
+            jogadoresTratativa(jogadores)
+        }
     }
     return (
         <main className="time-container">
@@ -60,7 +62,7 @@ function Time() {
                         </li>
                     })
                     :
-                    null
+                    <h2>Esse time não possui atletas cadastrados</h2>
                 }
             </ul>
         </main>
