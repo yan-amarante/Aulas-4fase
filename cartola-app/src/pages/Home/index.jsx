@@ -2,6 +2,7 @@ import "./styles.css"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
+
 function Home() {
 
     const [times, setTimes] = useState([])
@@ -11,7 +12,6 @@ function Home() {
         let times = []
 
         Object.keys(objeto).forEach(function (key, index) {
-            console.log(objeto[key].nome)
             times.push(objeto[key])
         });
 
@@ -36,18 +36,22 @@ function Home() {
     }
 
     return (
-        <main className="container-home">
+        <main onClick={() => console.log(times)} className="container-home">
             <ul>
                 {times.length > 0 ?
                     times.map((time) => {
                         if (time.id !== 1) {
-                            return <Link to={`/time/${time.id}`}>
-                                <li key={time.id}>
-                                    <img src={time.escudos["30x30"]} />
-                                    <h2>{time.nome}</h2>
-                                    <p>{time.apelido}</p>
-                                </li>
-                            </Link>
+                            return <li className="lista-times" key={time.id}>
+                                <Link to={`/time/${time.id}`}>
+                                    <section className="times-card-container">
+                                        <img className="logo-time" src={time.escudos["60x60"]} />
+                                        <article className="nomes-container">
+                                            <h2 className="nome">{time.nome}</h2>
+                                            <p className="apelido">{time.apelido}</p>
+                                        </article>
+                                    </section>
+                                </Link>
+                            </li>
                         }
                     })
                     :

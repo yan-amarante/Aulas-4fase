@@ -1,0 +1,34 @@
+.time-container{
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+ul{
+    padding: 1rem;
+    list-style: none;
+}
+li {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.foto-jogador{
+    width: 5%;
+    margin: 0.5rem 2rem;
+}
+h2{
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: inter;
+}
+
+.titulo-nome-time{
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: inter;
+    margin: 0.5rem 2rem;
+}

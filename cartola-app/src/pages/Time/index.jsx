@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import "./styles.css"
 
 function Time() {
 
     const [jogadores, setJogadores] = useState(null)
+    const [nomeTime, setNomeTime] = useState(null)
 
     const id = useParams()
 
@@ -18,11 +20,15 @@ function Time() {
         for (let i = 0; i < 3; i++) {
             jogadores.shift()
         }
-        let fotoTratativa = jogadores[0].map((jogador) => {
-            jogador.foto.replace(" FORMATO ", "220x220")
+        jogadores = jogadores[0]
+
+        let fotoTratativa = jogadores.map((jogador) => {
+            if(jogador.foto === null || jogador.foto === ""){
+                jogador.foto = "https://s.sde.globo.com/media/person_role/2022/09/27/photo_220x220_1oFhhWx.png"
+            }
+            return {...jogador, foto:jogador.foto.replace("FORMATO", "220x220")}
         })
-        console.log(fotoTratativa, "1")
-        setJogadores(fotoTratativa)
+         setJogadores(fotoTratativa)
     }
 
 
@@ -38,16 +44,18 @@ function Time() {
 
         jogadores = data
 
+        setNomeTime(data.clubes[id.id].nome)
+
         jogadoresTratativa(jogadores)
     }
     return (
-        <main onClick={() => console.log(jogadores)}
-        >
+        <main className="time-container">
+            {nomeTime !== null ? <h1 className="titulo-nome-time">Jogadores do {nomeTime}</h1> : null}
             <ul>
                 {jogadores !== null ?
                     jogadores.map((jogador) => {
                         return <li key={jogador.atleta_id}>
-                            <img src={jogador.foto} />
+                            <img className="foto-jogador" src={jogador.foto} />
                             <h2>{jogador.apelido}</h2>
                         </li>
                     })
