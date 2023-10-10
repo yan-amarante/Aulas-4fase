@@ -1,0 +1,23 @@
+.container-lista{
+    background-color: white;
+    width: 95%;
+    min-height: 100%;
+    grid-area: lista;
+}
+.lista-item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 30%;
+
+    .personagem-foto{
+        width: 50%;
+        border-radius: 50%;
+    }
+    .personagem-nome{
+        font-family: inter;
+        font-weight: 400;
+        font-size: 1rem;
+    }
+}
