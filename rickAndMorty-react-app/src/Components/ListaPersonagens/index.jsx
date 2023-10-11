@@ -5,10 +5,16 @@ import { PersonagemContext } from "../../Context/personagemContext"
 
 const API = "https://rickandmortyapi.com/api/character"
 
+const API_BUSCA = "https://rickandmortyapi.com/api/character/?name="
 
-function Home() {
+
+function ListaPersonagens() {
 
     const [personagens, setPersonagens] = useState(null)
+
+    const [personagensFiltro, setPersonagensFiltro] = useState([])
+
+    const [pesquisa, setPesquisa] = useState(null)
 
     const { personagem, setPersonagem } = useContext(PersonagemContext)
 
@@ -25,6 +31,7 @@ function Home() {
         const data = await res.json()
 
         setPersonagens(data.results)
+        setPersonagensFiltro(data.results)
 
     }
 
@@ -32,14 +39,78 @@ function Home() {
         setPersonagem({ id: id })
     }
 
+    function filtrarLista() {
+        if (filtroRef.current.selectedIndex === 0) {
+            let teste = personagens.map((personagem) => {
+                return (
+                    {
+                        id: personagem.id,
+                        image: personagem.image,
+                        name: personagem.name
+                    }
+                )
+
+            })
+            setPersonagensFiltro(teste)
+        }
+        if (filtroRef.current.selectedIndex === 1) {
+            let teste = personagens.map((personagem) => {
+                if (personagem.status === 'Alive') {
+                    return (
+                        {
+                            id: personagem.id,
+                            image: personagem.image,
+                            name: personagem.name
+                        }
+                    )
+                }
+            })
+            setPersonagensFiltro(teste)
+        }
+        if (filtroRef.current.selectedIndex === 2) {
+            let teste = personagens.map((personagem) => {
+                if (personagem.status === 'Dead') {
+                    return (
+                        {
+                            id: personagem.id,
+                            image: personagem.image,
+                            name: personagem.name
+                        }
+                    )
+                }
+            })
+            setPersonagensFiltro(teste)
+        }
+        if (filtroRef.current.selectedIndex === 3) {
+            let teste = personagens.map((personagem) => {
+                if (personagem.status === 'unknown') {
+                    return (
+                        {
+                            id: personagem.id,
+                            image: personagem.image,
+                            name: personagem.name
+                        }
+                    )
+                }
+            })
+            setPersonagensFiltro(teste)
+        }
+    }
+
+    async function buscarNome() {
+        const res = await fetch(API_BUSCA + pesquisa)
+        const data = await res.json()
+        setPersonagensFiltro(data.results)
+    }
+
     return (
         <section className="container-lista">
             <h2>Lista de Personagens</h2>
             <section>
-                <input type="text" />
-                <button>Pesquisar</button>
+                <input onChange={evento => setPesquisa(evento.target.value)} type="text" />
+                <button onClick={buscarNome}>Pesquisar</button>
                 <label>Estado</label>
-                <select  ref={filtroRef} name="status" id="status">
+                <select onChange={filtrarLista} ref={filtroRef} name="status" id="status">
                     <option value="vivo">Todos</option>
                     <option value="vivo">Vivo</option>
                     <option value="morto">Morto</option>
@@ -49,19 +120,21 @@ function Home() {
             {personagens !== null ?
                 <ul>
                     {
-                        personagens.map((personagem) => {
-                            return (
-                                <li onClick={() => atualizarDetalhes(personagem.id)} className="lista-item" key={personagem.id}>
-                                    <img className="personagem-foto" src={personagem.image} />
-                                    <p className="personagem-nome">{personagem.name}</p>
-                                </li>
-                            )
+                        personagensFiltro.map((personagem) => {
+                            if (personagem !== undefined) {
+                                return (
+                                    <li onClick={() => atualizarDetalhes(personagem.id)} className="lista-item" key={personagem.id}>
+                                        <img className="personagem-foto" src={personagem.image} />
+                                        <p className="personagem-nome">{personagem.name}</p>
+                                    </li>
+                                )
+                            }
                         })
                     }
-                </ul> : null
-            }
+                </ul>
+                : null}
         </section>
     )
 }
 
-export default Home
+export default ListaPersonagens
