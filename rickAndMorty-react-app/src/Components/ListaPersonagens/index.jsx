@@ -101,10 +101,16 @@ function ListaPersonagens() {
     }
 
     async function buscarNome() {
-        const res = await fetch(API_BUSCA + pesquisa)
-        const data = await res.json()
-        setPersonagensFiltro(data.results)
-        setPersonagensPesquisa(data.results)
+        if (pesquisa !== null) {
+            const res = await fetch(API_BUSCA + pesquisa)
+            const data = await res.json()
+            if (!data.error) {
+                setPersonagensFiltro(data.results)
+                setPersonagensPesquisa(data.results)
+            }else{
+                return alert("Insira um nome válido no campo de busca")
+            }
+        }
     }
 
     return (
