@@ -83,8 +83,8 @@ function DetalhesPersonagem({ id }) {
 
     return (
         <section className="container-detalhes">
-            <h2>Detalhes do Personagem{id}</h2>
-            <img src={detalhes?.image} />
+            <h2 className="titulo-detalhes">Detalhes do Personagem</h2>
+            <img className="imagem-detalhes" src={detalhes?.image} />
             <p>Nome: {detalhes?.name}</p>
             <p>Status: {detalhes?.status}</p>
             <p>Espécie: {detalhes?.species}</p>

@@ -105,11 +105,12 @@ function ListaPersonagens() {
 
     return (
         <section className="container-lista">
-            <h2>Lista de Personagens</h2>
-            <section>
-                <input onChange={evento => setPesquisa(evento.target.value)} type="text" />
-                <button onClick={buscarNome}>Pesquisar</button>
-                <label>Estado</label>
+            <h2 className="titulo-lista">Lista de Personagens</h2>
+            <section className="pesquisa-filtro-container">
+                <section className="pesquisa-container">
+                    <input className="pesquisa-input" onChange={evento => setPesquisa(evento.target.value)} type="text" />
+                    <button className="pesquisa-botao" onClick={buscarNome}>Pesquisar</button>
+                </section>
                 <select onChange={filtrarLista} ref={filtroRef} name="status" id="status">
                     <option value="vivo">Todos</option>
                     <option value="vivo">Vivo</option>
@@ -118,7 +119,7 @@ function ListaPersonagens() {
                 </select>
             </section>
             {personagens !== null ?
-                <ul>
+                <ul className="lista">
                     {
                         personagensFiltro.map((personagem) => {
                             if (personagem !== undefined) {

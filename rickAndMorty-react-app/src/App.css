@@ -11,12 +11,12 @@
     padding: 1rem;
 }
 .titulo-app{
-    color: black;
+    color: rgb(34, 33, 33);
     font-size: 2rem;
     font-weight: 700;
     font-family: inter;
-    margin-bottom: 1rem;
     grid-area: h1;
+    margin: 0 auto 1rem auto;
 }
 
 a {
