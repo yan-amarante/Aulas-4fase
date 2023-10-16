@@ -57,13 +57,13 @@ function DetalhesPersonagem({ id }) {
 
     function renderizarVetor() {
         return (
-            <ul>
+            <ul className="episodios-container">
                 {
                     episodios.map((episodio) => {
                         return (
-                            <li key={episodio.id}>
-                                <p>{episodio.episode}</p>
-                                <p>{episodio.name}</p>
+                            <li className="lista-itens-detalhes" key={episodio.id}>
+                                <p className="info-detalhes">Número: {episodio.episode}</p>
+                                <p className="info-detalhes">Título: {episodio.name}</p>
                             </li>
                         )
                     })
@@ -74,10 +74,10 @@ function DetalhesPersonagem({ id }) {
 
     function renderizarObjeto() {
         return (
-            <>
-                <p>{episodios.episode}</p>
-                <p>{episodios.name}</p>
-            </>
+            <section className="episodios-container borda-section">
+                <p className="info-detalhes">Número: {episodios.episode}</p>
+                <p className="info-detalhes">Título: {episodios.name}</p>
+            </section>
         )
     }
 
@@ -85,10 +85,10 @@ function DetalhesPersonagem({ id }) {
         <section className="container-detalhes">
             <h2 className="titulo-detalhes">Detalhes do Personagem</h2>
             <img className="imagem-detalhes" src={detalhes?.image} />
-            <p>Nome: {detalhes?.name}</p>
-            <p>Status: {detalhes?.status}</p>
-            <p>Espécie: {detalhes?.species}</p>
-            <h3>Episódios:</h3>
+            <p className="info-detalhes">Nome: {detalhes?.name}</p>
+            <p className="info-detalhes">Status: {detalhes?.status}</p>
+            <p className="info-detalhes">Espécie: {detalhes?.species}</p>
+            <h3 className="h3-episodios">Episódios:</h3>
             {episodios !== null ? validarTipoEpisodios() : null}
         </section>
     )

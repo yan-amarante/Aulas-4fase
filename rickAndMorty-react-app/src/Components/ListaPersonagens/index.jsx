@@ -14,6 +14,9 @@ function ListaPersonagens() {
 
     const [personagensFiltro, setPersonagensFiltro] = useState([])
 
+    const [personagensPesquisa, setPersonagensPesquisa] = useState([])
+
+
     const [pesquisa, setPesquisa] = useState(null)
 
     const { personagem, setPersonagem } = useContext(PersonagemContext)
@@ -32,7 +35,6 @@ function ListaPersonagens() {
 
         setPersonagens(data.results)
         setPersonagensFiltro(data.results)
-
     }
 
     function atualizarDetalhes(id) {
@@ -40,8 +42,9 @@ function ListaPersonagens() {
     }
 
     function filtrarLista() {
+
         if (filtroRef.current.selectedIndex === 0) {
-            let teste = personagens.map((personagem) => {
+            let teste = personagensPesquisa.map((personagem) => {
                 return (
                     {
                         id: personagem.id,
@@ -54,7 +57,7 @@ function ListaPersonagens() {
             setPersonagensFiltro(teste)
         }
         if (filtroRef.current.selectedIndex === 1) {
-            let teste = personagens.map((personagem) => {
+            let teste = personagensPesquisa.map((personagem) => {
                 if (personagem.status === 'Alive') {
                     return (
                         {
@@ -68,7 +71,7 @@ function ListaPersonagens() {
             setPersonagensFiltro(teste)
         }
         if (filtroRef.current.selectedIndex === 2) {
-            let teste = personagens.map((personagem) => {
+            let teste = personagensPesquisa.map((personagem) => {
                 if (personagem.status === 'Dead') {
                     return (
                         {
@@ -82,7 +85,7 @@ function ListaPersonagens() {
             setPersonagensFiltro(teste)
         }
         if (filtroRef.current.selectedIndex === 3) {
-            let teste = personagens.map((personagem) => {
+            let teste = personagensPesquisa.map((personagem) => {
                 if (personagem.status === 'unknown') {
                     return (
                         {
@@ -101,6 +104,7 @@ function ListaPersonagens() {
         const res = await fetch(API_BUSCA + pesquisa)
         const data = await res.json()
         setPersonagensFiltro(data.results)
+        setPersonagensPesquisa(data.results)
     }
 
     return (
