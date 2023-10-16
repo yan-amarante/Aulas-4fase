@@ -35,6 +35,7 @@ function ListaPersonagens() {
 
         setPersonagens(data.results)
         setPersonagensFiltro(data.results)
+        setPersonagensPesquisa(data.results)
     }
 
     function atualizarDetalhes(id) {
@@ -42,7 +43,6 @@ function ListaPersonagens() {
     }
 
     function filtrarLista() {
-
         if (filtroRef.current.selectedIndex === 0) {
             let teste = personagensPesquisa.map((personagem) => {
                 return (
