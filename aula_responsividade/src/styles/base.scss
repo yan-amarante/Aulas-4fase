@@ -1,0 +1,42 @@
+@import "_variaveis.scss";
+
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.one-column {
+    width: 100%;
+}
+
+.two-column {
+    width: 60%;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    color: $black;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+@media (max-width: $media-width) {
+    .container{
+        flex-direction: column;
+    }
+    .two-column{
+        width: 90%;
+    }
+}
